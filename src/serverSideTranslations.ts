@@ -1,4 +1,4 @@
-import fs from 'fs'
+// import fs from 'fs'
 import path from 'path'
 
 import { createConfig } from './config/createConfig'
@@ -19,9 +19,9 @@ export const serverSideTranslations = async (
 
   let userConfig = configOverride
 
-  if (fs.existsSync(path.resolve(DEFAULT_CONFIG_PATH))) {
+//   if (fs.existsSync(path.resolve(DEFAULT_CONFIG_PATH))) {
     userConfig = await import(path.resolve(DEFAULT_CONFIG_PATH))
-  }
+//   }
 
   if (userConfig === null) {
     throw new Error('next-i18next was unable to find a user config')
@@ -53,13 +53,13 @@ export const serverSideTranslations = async (
     initialI18nStore[config.fallbackLng] = {}
   }
 
-  if (namespacesRequired.length === 0) {
-    const getAllNamespaces = (path: string) =>
-      fs.readdirSync(path)
-        .map(file => file.replace(`.${localeExtension}`, ''))
+//   if (namespacesRequired.length === 0) {
+//     const getAllNamespaces = (path: string) =>
+//       fs.readdirSync(path)
+//         .map(file => file.replace(`.${localeExtension}`, ''))
 
-    namespacesRequired = getAllNamespaces(path.resolve(process.cwd(), `${localePath}/${defaultLocale}`))
-  }
+//     namespacesRequired = getAllNamespaces(path.resolve(process.cwd(), `${localePath}/${defaultLocale}`))
+//   }
 
   namespacesRequired.forEach((ns) => {
     for (const locale in initialI18nStore) {
